@@ -15,20 +15,12 @@ public class NetworkServiceCreator {
 
     private static String BASE_URL = "https://icanhazdadjoke.com/";
 
-    private static Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addConverterFactory(GsonConverterFactory.create());
-
     public static <S> S createService(Class<S> serviceClass) {
-        builder = new Retrofit.Builder()
+        Retrofit.Builder builder = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create());
 
         Retrofit retrofit = builder.client(httpClient.build()).build();
         return retrofit.create(serviceClass);
-    }
-
-    public static Retrofit getRetrofit() {
-        return builder.build();
     }
 }
